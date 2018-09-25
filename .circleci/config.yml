@@ -10,33 +10,26 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          working_directory:  ~/code/AndroidDemo
-          key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          working_directory: ~/code/AndroidDemo
           name: Chmod permissions #if permission for Gradlew Dependencies fail, use this. 
           command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
-          working_directory:  ~/code/AndroidDemo
           command: ./gradlew androidDependencies
       - save_cache:
-          working_directory:  ~/code/AndroidDemo
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "AndroidDemo/build.gradle" }}-{{ checksum  "AndroidDemo/app/build.gradle" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
           name: Setup emulator
-          working_directory:  ~/code/AndroidDemo
           command: sdkmanager "system-images;android-18;default;armeabi-v7a" && echo "no" | avdmanager create avd -n test -k "system-images;android-18;default;armeabi-v7a"
       - run:
           name: Launch emulator
-          working_directory:  ~/code/AndroidDemo
           command: export LD_LIBRARY_PATH=${ANDROID_HOME}/emulator/lib64:${ANDROID_HOME}/emulator/lib64/qt/lib && emulator64-arm -avd test -noaudio -no-boot-anim -no-window -accel on
           background: true
       - run:
           name: Wait emulator
-          working_directory:  ~/code/AndroidDemo
           command: |
             # wait for it to have booted
             circle-android wait-for-boot
@@ -45,12 +38,9 @@ jobs:
             adb shell input keyevent 82
       - run:
           name: Run Tests
-          working_directory:  ~/code/AndroidDemo
           command: ./gradlew connectedAndroidTest
       - store_artifacts:
-          working_directory:  ~/code/AndroidDemo
           path: app/build/reports
           destination: reports
       - store_test_results:
-          working_directory:  ~/code/AndroidDemo
           path: app/build/test-results
