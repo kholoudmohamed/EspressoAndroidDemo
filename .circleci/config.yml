@@ -40,7 +40,7 @@ jobs:
           name: Run Tests
           command: ./gradlew connectedAndroidTest
       - store_artifacts:
-          path: /tmp/artifacts
-          destination: build
+          path: app/build/reports
+          destination: reports
       - store_test_results:
-          path: /tmp/test-reports
+          path: app/build/test-results
