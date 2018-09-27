@@ -112,9 +112,13 @@ public class HelperClass {
     public static void ResetPreferences() throws Exception{
         File root = InstrumentationRegistry.getTargetContext().getFilesDir().getParentFile();
         String[] sharedPreferencesFileNames = new File(root, "shared_prefs").list();
-        for (String fileName : sharedPreferencesFileNames) {
-            InstrumentationRegistry.getTargetContext().getSharedPreferences(fileName.replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit();
+        try{
+            for (String fileName : sharedPreferencesFileNames) {
+                InstrumentationRegistry.getTargetContext().getSharedPreferences(fileName.replace(".xml", ""), Context.MODE_PRIVATE).edit().clear().commit();
+            }
         }
+        catch (NullPointerException exp){}
+
     }
 
 }
