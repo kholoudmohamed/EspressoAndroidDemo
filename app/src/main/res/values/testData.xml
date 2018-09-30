@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Credentials -->
+    <string name="userName">crazydog335</string>
+    <string name="password">venture</string>
+
+    <!-- Invalid Credentials -->
+    <string name="invalidUserNamePassword">invalid</string>
+
+    <!-- Search Data -->
+    <string name="searchText">sa</string>
+    <string name="intendedDriverNameSelection">Sarah Scott</string>
+</resources>

@@ -1,39 +1,35 @@
 package Helpers;
+import android.support.test.InstrumentationRegistry;
+import com.mytaxi.android_demo.R;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
 
 public class DataReader {
 
-    private Properties pro;
-    public DataReader()
+    public String getData(int id)
     {
-        try {
-            File source = new File ("\\src\\androidTest\\java\\Helpers\\TestData.properties");
-            FileInputStream input=new FileInputStream(source);
-            pro=new Properties();
-            pro.load(input);
-        }catch(Exception exp) {
-            System.out.println("Exception is: ---" + exp.getMessage());
-        }
+        return InstrumentationRegistry.getTargetContext()
+                .getString(id);
+    }
+    public String getUsername()
+    {
+        return getData(R.string.userName);
+    }
+    public String getPassword()
+    {
+        return getData(R.string.password);
     }
 
-    public String getUsername()throws Exception{
-        return pro.getProperty("userName");
+    public String getInvalidUsernamePassword()
+    {
+        return getData(R.string.invalidUserNamePassword);
     }
-    public String getPassword()throws Exception{
-        return pro.getProperty("password");
+    public String getSearchText()
+    {
+        return getData(R.string.searchText);
     }
-    public String getInvalidUsernamePassword()throws Exception{
-        return pro.getProperty("invalidUserNamePassword");
+    public String getIntendedDriverName()
+    {
+        return getData(R.string.intendedDriverNameSelection);
     }
-    public String getSearchText()throws Exception{
-        return pro.getProperty("searchText");
-    }
-    public String getIntendedDriverName()throws Exception{
-        return pro.getProperty("intendedDriverNameSelection");
-    }
-
 
 }
