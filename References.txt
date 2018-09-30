@@ -1,0 +1,10 @@
+Following are the references used while implementing this POC:
+
+Espresso
+https://blogs.perficient.com/2017/07/05/how-to-do-android-automation-test-with-espresso-and-uiautomator/
+https://developer.android.com/reference/android/support/test/espresso/intent/matcher/BundleMatchers
+https://codelabs.developers.google.com/codelabs/android-testing/index.html?index=..%2F..%2Fio2018#0
+https://www.youtube.com/watch?v=sDp8JNbITm4&list=PLx5ipGeoOO2hCbqjX784_I4Y4mDsVbVEf&index=1
+https://blog.novatec-gmbh.de/using-page-object-pattern-android-tests/
+https://stackoverflow.com/questions/21417954/espresso-thread-sleep
+http://www.qaautomated.com/2016/10/how-to-test-autocomplete-text-box-with.html
